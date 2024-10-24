@@ -1,16 +1,10 @@
 package org.example.springbootdeveloper.dto.request;
 
-import lombok.*;
+import lombok.Data;
 
 @Data
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class PostRequestDto {
     private String title;
     private String content;
     private String author;
-
-
 }

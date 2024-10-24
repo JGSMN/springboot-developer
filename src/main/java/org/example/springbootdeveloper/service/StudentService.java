@@ -125,6 +125,7 @@ public class StudentService {
                             new Error("Student not found with id" + id)
                     );
             // 조회한 학생 객체를 DB에서 삭제
+            studentRepository.delete(student);
 
         } catch(Exception e) {
             throw new ResponseStatusException(
@@ -133,5 +134,4 @@ public class StudentService {
             );
         }
     }
-
 }

@@ -14,8 +14,6 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
     // @ManyToOne
     // : Comment 엔티티와 Post 엔티티 간의 다대일 관계
     // : 여러 개의 Comment가 하나의 Post에 속함
@@ -36,5 +34,4 @@ public class Comment {
     private String content;
     @Column(nullable = false)
     private String commenter;
-
 }

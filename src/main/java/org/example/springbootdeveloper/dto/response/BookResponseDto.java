@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.springbootdeveloper.entity.Category;
 
+// 서버가 클라이언트에 응답할 때 필요한 데이터만 전달
 @Getter
 @Setter
 @NoArgsConstructor

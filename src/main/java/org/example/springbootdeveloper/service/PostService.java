@@ -1,8 +1,7 @@
 package org.example.springbootdeveloper.service;
 
-import lombok.RequiredArgsConstructor;
+import org.example.springbootdeveloper.common.constant.ResponseMessage;
 import org.example.springbootdeveloper.dto.request.PostRequestDto;
-import org.example.springbootdeveloper.dto.response.BookResponseDto;
 import org.example.springbootdeveloper.dto.response.CommentResponseDto;
 import org.example.springbootdeveloper.dto.response.PostResponseDto;
 import org.example.springbootdeveloper.dto.response.ResponseDto;
@@ -14,12 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.stream;
-import static org.example.springbootdeveloper.dto.response.ResponseDto.setFailed;
-import static org.example.springbootdeveloper.dto.response.ResponseDto.setSuccess;
-
 @Service
-@RequiredArgsConstructor
 public class PostService {
     @Autowired
     private PostRepository postRepository;
@@ -32,55 +26,42 @@ public class PostService {
                     .author(dto.getAuthor())
                     .build();
             postRepository.save(post);
-            return setSuccess("게시글이 정상적으로 등록되었습니다.", convertToPostResponseDto(post));
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, convertToPostResponseDto(post));
         } catch (Exception e) {
-            return setFailed("게시글 등록 중 오류가 발생했습니다: " + e.getMessage());
+            return ResponseDto.setFailed("게시글 등록 중 오류가 발생했습니다: " + e.getMessage());
         }
-
 
     }
 
-
     public ResponseDto<List<PostResponseDto>> getAllPosts() {
-        List<PostResponseDto> posts = postRepository.findAll()
-                .stream()
-                .map(this::convertToPostResponseDto)
-                .collect(Collectors.toList());
-        return setSuccess("성공", posts);
+        try {
+            List<Post> posts = postRepository.findAll();
+            List<PostResponseDto> postResponseDtos = posts.stream()
+                    .map(this::convertToPostResponseDto)
+                    .collect(Collectors.toList());
+
+            if (postResponseDtos.isEmpty()) {
+                return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_POST);
+            }
+
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, postResponseDtos);
+        } catch (Exception e) {
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
 
     }
 
     public ResponseDto<PostResponseDto> getPostById(Long postId) {
-        try {
-            Post post = postRepository.findById(postId)
-                    .orElseThrow(() -> new IllegalAccessError("열심히노력중" + postId));
-            return setSuccess("게시글을 id로 가져오는 것을 성공하였습니다.", convertToPostResponseDto(post));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return setFailed("게시글을 id로 가져오는것을 실패하였습니다.");
-        }
+        return null;
     }
 
 
-    public ResponseDto<PostResponseDto> updatePost(Long postId, PostRequestDto updatepost) {
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new IllegalArgumentException("게시글을 가져올 수 없습니다" + postId));
-
-        post.setTitle(updatepost.getTitle());
-        post.setContent(updatepost.getContent());
-        post.setAuthor(updatepost.getAuthor());
-
-        Post updatedPost = postRepository.save(post);
-
-        convertToPostResponseDto(updatedPost);
-        return setSuccess("성공", convertToPostResponseDto(updatedPost));
-
-
+    public ResponseDto<PostResponseDto> updatePost(Long postId, PostRequestDto dto) {
+        return null;
     }
 
     public ResponseDto<Void> deletePost(Long postId) {
-        postRepository.deleteById(postId);
-        return setSuccess("게시글 삭제 성공", deletePost(Long.valueOf("으에에")).getData());
+        return null;
     }
 
     private PostResponseDto convertToPostResponseDto(Post post) {

@@ -1,3 +1,4 @@
+
 package org.example.springbootdeveloper.entity;
 
 import jakarta.persistence.*;
