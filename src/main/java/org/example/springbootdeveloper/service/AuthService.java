@@ -46,6 +46,8 @@ public class AuthService {
                     .createdAt(LocalDateTime.now())
                     .build();
 
+
+
             userRepository.save(user);
 
         } catch (Exception e) {
