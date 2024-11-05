@@ -1,3 +1,4 @@
+
 package org.example.springbootdeveloper.repository;
 
 import org.example.springbootdeveloper.entity.User;

@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor // 기본 생성자
-@NoArgsConstructor // 모든 필드를 초기화하는 생성자
+@NoArgsConstructor // 기본 생성자
+@AllArgsConstructor // 모든 필드를 초기화하는 생성자
 @Getter
 @Setter
 public class StudentDto {

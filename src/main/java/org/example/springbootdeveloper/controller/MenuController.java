@@ -1,3 +1,4 @@
+
 package org.example.springbootdeveloper.controller;
 
 import jakarta.validation.Valid;
@@ -72,9 +73,8 @@ public class MenuController {
             @PathVariable Long id,
             @AuthenticationPrincipal String userEmail,
             @Valid @RequestBody MenuRequestDto dto
-
     ) {
-        ResponseDto<MenuResponseDto> result = menuService.updateMenu(id, userEmail , dto);
+        ResponseDto<MenuResponseDto> result = menuService.updateMenu(id, userEmail, dto);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 

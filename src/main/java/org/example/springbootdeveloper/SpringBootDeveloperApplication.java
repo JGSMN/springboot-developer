@@ -1,4 +1,4 @@
-package org.example.springbootdeveloper;
+package org.example.springboottest;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

@@ -1,9 +1,9 @@
 package org.example.이론;
 
 public class p_스프링시큐리티 {
-    // 스프링 시큐리티(spring security, 보안)
+    // ===== 스프링 시큐리티(spring security, 보안) =====
     // : 스프링 기반 애플리케이션 보안(인증, 인가, 권한)을 담당하는 스프링 하위 프레임워크
-    // >> 다양한 애너테이ㅣ션으로 CSRF 공격, 세셩 고정 공격을 방어
+    // >> 다양한 애너테이션으로 CSRF 공격, 세션 고정 공격을 방어
     // >> 요청 헤더 보안 처리도 가능
 
     // 1. 인증(Authentication)
@@ -13,10 +13,10 @@ public class p_스프링시큐리티 {
 
     // 2. 인가(Authorization)
     // : 인증된 사용자가 수행할 수 있는 작업의 범위를 결정
-    // : 사이트의 특정 부분에 접글할 수 있는지 권한을 확인하는 작업
+    // : 사이트의 특정 부분에 접근할 수 있는지 권한을 확인하는 작업
 
     // ===== 스프링 시큐리티의 구조 =====
-    // : 필터(Fillter)를 기반으로 동작
+    // : 필터(Filter)를 기반으로 동작
 
     // 1) SecurityFilterChain
     // : 스프링 시큐리티의 요청에 대한 보안 처리 과정에서 여러 필터를 순차적으로 적용시킴
@@ -31,6 +31,7 @@ public class p_스프링시큐리티 {
     //      : 폼 기반 로그인할 때 사용되는 필터
     //      : 성공 시 AuthenticationSuccessHandler
     //      : 실패 시 AuthenticationFailureHandler 실행
+
     // - DefaultLoginPageGeneratingFilter
     // - BasicAuthenticationFilter
     // - RequestCacheAwareFilter
@@ -53,7 +54,7 @@ public class p_스프링시큐리티 {
     // 3. 유효성 검사 완료 시 실제 구현체인 UsernamePasswordAuthenticationToken을 만들어 전달
     //      : 전달받은 인증용 객체를 "AuthenticationManager"에게 전달
 
-    // 4. UsernamePasswordAuthenticationToken을 "authenticationProvider"에 전달
+    // 4. UsernamePasswordAuthenticationToken을 "AuthenticationProvider"에 전달
 
     // 5. 사용자 아이디를 UserDetailService에 전달
     //      : UserDetailService는 사용자 아이디로 찾은 사용자 정보를 UserDetails 객체로 만들어
@@ -65,5 +66,4 @@ public class p_스프링시큐리티 {
 
     // 8. 인증이 완료되면 SecurityContextHolder에 Authentication을 저장
     //      : 인증 성공 유무에 따라 핸들러 실행
-
 }

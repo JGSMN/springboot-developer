@@ -1,4 +1,4 @@
-package org.example.springbootdeveloper.dto;
+package org.example.springboottest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

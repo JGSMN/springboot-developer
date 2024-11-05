@@ -1,5 +1,6 @@
 package org.example.springbootdeveloper.service;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.springbootdeveloper.common.constant.ResponseMessage;
 import org.example.springbootdeveloper.dto.request.MenuRequestDto;
@@ -53,7 +54,7 @@ public class MenuService {
             List<Menu> menus = menuRepository.findAll();
 
             data = menus.stream()
-//                    .map((menu) -> new MenuResponseDto(menu))
+                    // .map((menu) -> new MenuResponseDto(menu))
                     .map(MenuResponseDto::new)
                     .collect(Collectors.toList());
 
@@ -107,7 +108,8 @@ public class MenuService {
                 List<Menu> menus = optionalMenus.get();
 
                 data = menus.stream()
-                        .map((menu) -> new MenuResponseDto(menu))
+//                        .map((menu) -> new MenuResponseDto(menu))
+                        .map(MenuResponseDto::new )
                         .collect(Collectors.toList());
             } else {
                 return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_DATA);
@@ -131,8 +133,8 @@ public class MenuService {
 
             if (menuOptional.isPresent()) {
                 Menu menu = Menu.builder()
-                        .name(dto.getName())
                         .userEmail(email)
+                        .name(dto.getName())
                         .description(dto.getDescription())
                         .price(dto.getPrice())
                         .isAvailable(dto.isAvailable())

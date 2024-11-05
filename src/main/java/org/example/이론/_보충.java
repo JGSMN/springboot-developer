@@ -22,13 +22,13 @@ public class _보충 {
         : JSON 형태의 데이터를 요청 본문으로 전달받을 때 사용
         - 새로운 데이터 생성을 위한 POST | 데이터를 수정하는 PUT 요청에 주로 사용
 
-        +) @AuthenticationPrinciple
+        +) @AuthenticationPrincipal
         : 인증된 사용자 정보를 가져오기 위해 사용
         - Spring Security에서 로그인한 사용자의 정보를 컨트롤러에서 쉽게
             사용할 수 있도록 하는 기능
     */
 
-
+    // @PathVariable
     @GetMapping("/categories/{categoryId}/items/{itemId}")
     public ResponseEntity<?> getItemInCategory(
             @PathVariable Long categoryId,
@@ -43,12 +43,12 @@ public class _보충 {
     // query가 들어간 사용자 조회
     // + 조회 건수를 limit으로 지정
 
-    // cf) @RequestPAram(defaultValue = "기본값")
+    // cf) @RequestParam(defaultValue = "기본값")
     public ResponseEntity<List<?>> searchUsers(
             @RequestParam String query,
             @RequestParam(defaultValue = "10") int limit
     ) {
-        // List<제네릭타입> users = userService.searchUsers(query, limit);
+//        List<제네릭타입> users = userService.searchUsers(query, limit);
         return ResponseEntity.ok(null);
     }
 
@@ -77,5 +77,4 @@ public class _보충 {
         // List<제네릭 타입> orders = orderService.getUserOrders(id, page, size);
         return ResponseEntity.ok(null);
     }
-
 }

@@ -1,6 +1,6 @@
 package org.example.이론;
 
-public class f_springcontainer {
+public class f_spring_container {
 
     // 스프링 컨테이너 & 빈
 

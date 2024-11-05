@@ -1,9 +1,10 @@
+
 package org.example.springbootdeveloper.controller;
 
 // AuthController VS UserController
 
 // 1) AuthController
-// : 인증(AuthController) & 인가(Authorization)와 관련된
+// : 인증(Authentication) & 인가(Authorization)와 관련된
 //      모든 로직을 처리하는 컨트롤러
 // - 로그인, 로그아웃, 토큰 발급 등 사용자 인증과 관련된 기능을 포함
 
@@ -39,10 +40,10 @@ public class AuthController {
     private static final String POST_SIGN_IN = "/signIn";
 
     // HTTP 메서드: POST
-    // URI 경로: /signup
+    // URI 경로: /signUp
     // - 회원가입 로직: username, password, email
     @PostMapping(POST_SIGN_UP)
-    public ResponseEntity<ResponseDto<UserSignUpResponseDto>> signup(@RequestBody UserSignUpRequestDto dto) {
+    public ResponseEntity<ResponseDto<UserSignUpResponseDto>> signup(@Valid @RequestBody UserSignUpRequestDto dto) {
         try {
             ResponseDto<UserSignUpResponseDto> result = authService.signup(dto);
             return ResponseEntity.status(HttpStatus.OK).body(result);
@@ -50,6 +51,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
+
     // HTTP 메서드: POST
     // URI 경로: /login
     // - 로그인 로직: username, password
